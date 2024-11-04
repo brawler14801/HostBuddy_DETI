@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PDF Viewer</title>
     <style>
-        /* Full-page iframe for desktop and mobile */
+        /* Full-page embed styling for desktop and mobile */
         body, html {
             margin: 0;
             padding: 0;
@@ -13,7 +13,7 @@
             height: 100%;
             overflow: hidden;
         }
-        iframe {
+        embed, iframe {
             width: 100%;
             height: 100%;
             border: none;
@@ -21,8 +21,8 @@
     </style>
 </head>
 <body>
-    <!-- Full-page PDF iframe -->
-    <iframe id="pdfFrame" src="" frameborder="0" allowfullscreen></iframe>
+    <!-- Full-page PDF embed -->
+    <embed id="pdfEmbed" src="" type="application/pdf" />
 
     <script>
         // Get the 'file' parameter from the URL
@@ -30,9 +30,8 @@
         const pdfFile = urlParams.get('file');
 
         if (pdfFile) {
-            // Embed the PDF using Google Drive viewer for better mobile compatibility
-            const googleViewerUrl = `https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURIComponent(window.location.origin + '/' + pdfFile)}`;
-            document.getElementById('pdfFrame').src = googleViewerUrl;
+            // Set the PDF file as the embed source
+            document.getElementById('pdfEmbed').src = pdfFile;
         } else {
             document.body.innerHTML = "<p>No PDF file specified.</p>";
         }
